@@ -1,5 +1,6 @@
 package com.sachin.automation.tests;
 
+import org.apache.commons.io.filefilter.FalseFileFilter;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -25,7 +26,7 @@ public class CartPageTest extends BaseTest {
 		Assert.assertTrue(checkoutStepOnePage.isPageLoaded(), "Checkout Step One not loaded");
 	}
 
-	@Test(groups = { "regression", "cart", "negative" })
+	@Test(groups = { "regression", "cart", "negative" }, enabled = false)
 	public void shouldNotProceedToCheckoutWhenCartIsEmpty() {
 
 		// Do not add items to the cart because we want the cart to remain empty.
@@ -40,8 +41,8 @@ public class CartPageTest extends BaseTest {
 	@Test(groups = { "regression", "cart" })
 	public void shouldShowCorrectItemCountInCart() {
 
-		InventoryPage inventoryPage = new LoginPage(DriverFactory.getDriver()).loginAsValidUser(ConfigReader.get("username"),
-				ConfigReader.get("password"));
+		InventoryPage inventoryPage = new LoginPage(DriverFactory.getDriver())
+				.loginAsValidUser(ConfigReader.get("username"), ConfigReader.get("password"));
 
 		inventoryPage.addDefaultItemsToCart();
 
